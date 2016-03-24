@@ -1,0 +1,8 @@
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\AdventureWorksLT2008R2DW_Script.PreDeployment.sql
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\AdventureWorksLT2008R2DW_Script.PostDeployment.sql
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\AdventureWorksLT2008R2DW_Database.sqlsettings
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\AdventureWorksLT2008R2DW_Database.sqldeployment
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\AdventureWorksLT2008R2DW_Database.sqlcmdvars
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\BIDemo_DB.deploymanifest
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\sql\debug\BIDemo_DB.dbschema
+C:\Presentations\SQL Server\BI Demos\BIDemo_DB\BIDemo_DB\obj\Debug\BIDemo_DB.dbschema

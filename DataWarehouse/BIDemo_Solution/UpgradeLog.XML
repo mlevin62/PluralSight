@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="BIDemo_Solution">
+</Property><Property Name="Solution File" Value="D:\PluralSight\DataWarehouse\BIDemo_Solution\BIDemo_Solution.sln">
+</Property><Property Name="Date" Value="Thursday, March 17, 2016">
+</Property><Property Name="Time" Value="11:22 AM">
+</Property></Properties><Event ErrorLevel="3" Project="BIDemo_ETL" Source="BIDemo_ETL.dtproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="BIDemo_ETL" Source="BIDemo_ETL.dtproj" Description="Project converted successfully.">
+</Event><Event ErrorLevel="0" Project="" Source="BIDemo_Solution.sln" Description="The solution file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="" Source="BIDemo_Solution.sln" Description="No Conversion Required">
+</Event></UpgradeLog>

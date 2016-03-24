@@ -1,0 +1,18 @@
+﻿<div class="col-md-12">
+
+    <h2>Your Flights</h2>
+
+    <p class="lead">Pick the flight to approve</p>
+
+    <div  ng-repeat="trip in ourData.data.trips">
+
+        <!-- Data sample
+            description: "Some Conference",
+            targetStart: "",
+            targetEnd: ""
+        -->
+
+        <div><a ng-href="#/flight/{{trip.id}}">{{ trip.description }} - {{ trip.targetStart }} to {{ trip.targetEnd }}</a></div>
+    </div>
+
+</div>

@@ -1,0 +1,1986 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="CF001\rcain"
+  DTS:CreatorComputerName="CFBI05"
+  DTS:CreationDate="11/15/2010 11:27:44 AM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{0399B1CB-05A0-4E22-9365-1001832A6DD2}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DimCustomer"
+  DTS:DTSID="{A21A081A-6A60-417A-B33E-F97C93591389}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Adventure Works Lite 2008 R2]"
+      DTS:ObjectName="Adventure Works Lite 2008 R2"
+      DTS:DTSID="{149722CE-C8CA-4E9C-85C9-E6265849C566}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=AdventureWorksLT2008R2;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]"
+      DTS:ObjectName="Adventure Works Lite 2008 R2 Data Warehouse"
+      DTS:DTSID="{9BC2041D-FE73-46BC-A361-FC7B844492E3}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=AdventureWorksLT2008R2DW;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="2345"
+      DTS:ObjectName="SQL_Source"
+      DTS:DTSID="{4D37A4FC-B792-478D-AC5F-A0AB1606A446}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT ca.[CustomerID], ca.[AddressID], a.[CountryRegion], a.[StateProvince], a.[City], c.[CompanyName], c.ModifiedDate FROM [AdventureWorksLT2008R2].[SalesLT].[CustomerAddress] ca INNER JOIN [AdventureWorksLT2008R2].SalesLT.[Address] a ON ca.[AddressID] = a.[AddressID] INNER JOIN [AdventureWorksLT2008R2].SalesLT.Customer c ON ca.[CustomerID] = c.[CustomerID]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="6789"
+      DTS:ObjectName="VAR_LastImportDate"
+      DTS:DTSID="{FFA49823-159B-439B-81E6-AA4DDE3F894A}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="7">11/15/2010 12:02:37 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCustomer - DFT - Add rows to Customer Dimension"
+      DTS:DTSID="{1FF876AE-7C5A-4D06-ABB1-D68CB6E19000}"
+      DTS:Description="Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it"
+              name="DST - New record, insert it"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              description="OLE DB Destination"
+              usesDispositions="true"
+              version="4"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4">
+              <properties>
+                <property
+                  name="CommandTimeout"
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out.">0</property>
+                <property
+                  name="OpenRowset"
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset.">[BI].[DimCustomer]</property>
+                <property
+                  name="OpenRowsetVariable"
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."></property>
+                <property
+                  name="SqlCommand"
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source.">1252</property>
+                <property
+                  name="AlwaysUseDefaultCodePage"
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data.">false</property>
+                <property
+                  name="AccessMode"
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  typeConverter="AccessMode">3</property>
+                <property
+                  name="FastLoadKeepIdentity"
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on.">false</property>
+                <property
+                  name="FastLoadKeepNulls"
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on.">false</property>
+                <property
+                  name="FastLoadOptions"
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on.">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  name="FastLoadMaxInsertCommitSize"
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on.">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="The OLE DB runtime connection used to access the database."
+                  connectionManagerID="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Destination Input"
+                  hasSideEffects="true"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      cachedName="CustomerID"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[AddressID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      cachedName="AddressID"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[CountryRegion]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CountryRegion]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      cachedName="CountryRegion"
+                      cachedDataType="wstr"
+                      cachedLength="50" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[StateProvince]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      cachedName="StateProvince"
+                      cachedDataType="wstr"
+                      cachedLength="50" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[City]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[City]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      cachedName="City"
+                      cachedDataType="wstr"
+                      cachedLength="30" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].Columns[CompanyName]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      cachedName="CompanyName"
+                      cachedDataType="wstr"
+                      cachedLength="128" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[DimCustomerID]"
+                      name="DimCustomerID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      name="CustomerID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      name="AddressID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      name="CountryRegion"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      name="StateProvince"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      name="City"
+                      dataType="wstr"
+                      length="30" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      name="CompanyName"
+                      dataType="wstr"
+                      length="128" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Outputs[OLE DB Destination Error Output]"
+                  name="OLE DB Destination Error Output"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input]"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update"
+              name="DST - Record exists, stage it for later update"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              description="OLE DB Destination"
+              usesDispositions="true"
+              version="4"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4">
+              <properties>
+                <property
+                  name="CommandTimeout"
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out.">0</property>
+                <property
+                  name="OpenRowset"
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset.">[Staging].[DimCustomer]</property>
+                <property
+                  name="OpenRowsetVariable"
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."></property>
+                <property
+                  name="SqlCommand"
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source.">1252</property>
+                <property
+                  name="AlwaysUseDefaultCodePage"
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data.">false</property>
+                <property
+                  name="AccessMode"
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  typeConverter="AccessMode">3</property>
+                <property
+                  name="FastLoadKeepIdentity"
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on.">false</property>
+                <property
+                  name="FastLoadKeepNulls"
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on.">false</property>
+                <property
+                  name="FastLoadOptions"
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on.">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  name="FastLoadMaxInsertCommitSize"
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on.">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="The OLE DB runtime connection used to access the database."
+                  connectionManagerID="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Destination Input"
+                  hasSideEffects="true"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      cachedName="CustomerID"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[AddressID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      cachedName="AddressID"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[CountryRegion]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CountryRegion]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      cachedName="CountryRegion"
+                      cachedDataType="wstr"
+                      cachedLength="50" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[StateProvince]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      cachedName="StateProvince"
+                      cachedDataType="wstr"
+                      cachedLength="50" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[City]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[City]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      cachedName="City"
+                      cachedDataType="wstr"
+                      cachedLength="30" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[CompanyName]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      cachedName="CompanyName"
+                      cachedDataType="wstr"
+                      cachedLength="128" />
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].Columns[DimCustomerID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Match Output].Columns[DimCustomerID]"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[DimCustomerID]"
+                      cachedName="DimCustomerID"
+                      cachedDataType="i4" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[DimCustomerID]"
+                      name="DimCustomerID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      name="CustomerID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      name="AddressID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      name="CountryRegion"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      name="StateProvince"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      name="City"
+                      dataType="wstr"
+                      length="30" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      name="CompanyName"
+                      dataType="wstr"
+                      length="128" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Outputs[OLE DB Destination Error Output]"
+                  name="OLE DB Destination Error Output"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input]"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension"
+              name="LKP - See if customer data already in the dimension"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              description="Looks up values in a reference dataset by using exact matching."
+              usesDispositions="true"
+              version="6"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5">
+              <properties>
+                <property
+                  name="SqlCommand"
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  expressionType="Notify">select * from [BI].[DimCustomer]</property>
+                <property
+                  name="SqlCommandParam"
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  expressionType="Notify">select * from (select * from [BI].[DimCustomer]) [refTable]
+where [refTable].[CustomerID] = ? and [refTable].[AddressID] = ?</property>
+                <property
+                  name="ConnectionType"
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  name="CacheType"
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  typeConverter="CacheType">0</property>
+                <property
+                  name="NoMatchBehavior"
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  name="NoMatchCachePercentage"
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset.">0</property>
+                <property
+                  name="MaxMemoryUsage"
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform.">25</property>
+                <property
+                  name="MaxMemoryUsage64"
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform.">25</property>
+                <property
+                  name="ReferenceMetadataXml"
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format.">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimCustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AddressID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CountryRegion" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StateProvince" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CompanyName" dataType="DT_WSTR" length="128" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  name="ParameterMap"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  containsID="true">#{Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]};#{Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]};</property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source.">1252</property>
+                <property
+                  name="TreatDuplicateKeysAsError"
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used.">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="Connection manager used to access lookup data."
+                  connectionManagerID="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input].Columns[CustomerID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      cachedName="CustomerID"
+                      cachedDataType="i4">
+                      <properties>
+                        <property
+                          name="JoinToReferenceColumn"
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins.">CustomerID</property>
+                        <property
+                          name="CopyFromReferenceColumn"
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied." />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input].Columns[AddressID]"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      cachedName="AddressID"
+                      cachedDataType="i4">
+                      <properties>
+                        <property
+                          name="JoinToReferenceColumn"
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins.">AddressID</property>
+                        <property
+                          name="CopyFromReferenceColumn"
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied." />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Match Output]"
+                  name="Lookup Match Output"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input]"
+                  errorOrTruncationOperation="Lookup">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Match Output].Columns[DimCustomerID]"
+                      name="DimCustomerID"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Match Output].Columns[DimCustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          name="CopyFromReferenceColumn"
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied.">DimCustomerID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup No Match Output]"
+                  name="Lookup No Match Output"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Error Output]"
+                  name="Lookup Error Output"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input]"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data"
+              name="SRC - Customer Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              description="OLE DB Source"
+              usesDispositions="true"
+              version="7"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7">
+              <properties>
+                <property
+                  name="CommandTimeout"
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out.">0</property>
+                <property
+                  name="OpenRowset"
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."></property>
+                <property
+                  name="OpenRowsetVariable"
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."></property>
+                <property
+                  name="SqlCommand"
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT ca.[CustomerID]
+      ,ca.[AddressID]
+      ,a.[CountryRegion]
+      ,a.[StateProvince]
+      ,a.[City]
+      ,c.[CompanyName]  
+  FROM [AdventureWorksLT2008R2].[SalesLT].[CustomerAddress] ca
+  INNER JOIN [AdventureWorksLT2008R2].SalesLT.[Address] a
+     ON ca.[AddressID] = a.[AddressID]
+  INNER JOIN [AdventureWorksLT2008R2].SalesLT.Customer c
+     ON ca.[CustomerID] = c.[CustomerID]</property>
+                <property
+                  name="SqlCommandVariable"
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."></property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source.">1252</property>
+                <property
+                  name="AlwaysUseDefaultCodePage"
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data.">false</property>
+                <property
+                  name="AccessMode"
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  typeConverter="AccessMode">2</property>
+                <property
+                  name="ParameterMapping"
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="The OLE DB runtime connection used to access the database."
+                  connectionManagerID="Package.ConnectionManagers[Adventure Works Lite 2008 R2]"
+                  connectionManagerRefId="Package.ConnectionManagers[Adventure Works Lite 2008 R2]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      name="AddressID"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[AddressID]" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CountryRegion]"
+                      name="CountryRegion"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CountryRegion]"
+                      length="50"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CountryRegion]" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      name="StateProvince"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      length="50"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[StateProvince]" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[City]"
+                      length="30"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[City]" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      length="128"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      name="CustomerID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
+                      name="AddressID"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CountryRegion]"
+                      name="CountryRegion"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[StateProvince]"
+                      name="StateProvince"
+                      dataType="wstr"
+                      length="50" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      name="City"
+                      dataType="wstr"
+                      length="30" />
+                    <externalMetadataColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
+                      name="CompanyName"
+                      dataType="wstr"
+                      length="128" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output]"
+                  name="OLE DB Source Error Output"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="i4" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[AddressID]"
+                      name="AddressID"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[AddressID]"
+                      dataType="i4" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CountryRegion]"
+                      name="CountryRegion"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CountryRegion]"
+                      length="50"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[StateProvince]"
+                      name="StateProvince"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[StateProvince]"
+                      length="50"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[City]"
+                      length="30"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      length="128"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[Lookup Match Output]"
+              name="Lookup Match Output"
+              startId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup Match Output]"
+              endId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update.Inputs[OLE DB Destination Input]" />
+            <path
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[Lookup No Match Output]"
+              name="Lookup No Match Output"
+              startId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Outputs[Lookup No Match Output]"
+              endId="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it.Inputs[OLE DB Destination Input]" />
+            <path
+              refId="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[OLE DB Source Output]"
+              name="OLE DB Source Output"
+              startId="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data.Outputs[OLE DB Source Output]"
+              endId="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension.Inputs[Lookup Input]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimCustomer - SQL - Add where clause to SQL_Source variable"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCustomer - SQL - Add where clause to SQL_Source variable"
+      DTS:DTSID="{BD8CAD7A-F435-446D-BE4B-EEA47B5EDA80}"
+      DTS:Description="Script Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_203b38b361164443a1a3d303d5106136"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="VisualBasic"
+          ReadOnlyVariables="User::VAR_LastImportDate"
+          ReadWriteVariables="User::SQL_Source">
+          <ProjectItem
+            Name="My Project\AssemblyInfo.vb"
+            Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_203b38b361164443a1a3d303d5106136.vbproj")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("Microsoft")> 
+<Assembly: AssemblyProduct("ST_203b38b361164443a1a3d303d5106136.vbproj")> 
+<Assembly: AssemblyCopyright("Copyright @ Microsoft 2010")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("5b1fccab-7b46-47b9-8794-1311e3b1418e")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{025257C3-153B-4976-9D7F-553879D9CBDC}</msb:ProjectId>
+		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>st_203b38b361164443a1a3d303d5106136</msb:DisplayName>
+		<msb:CodeName>st_203b38b361164443a1a3d303d5106136</msb:CodeName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:Project Include="st_203b38b361164443a1a3d303d5106136.vbproj"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="st_203b38b361164443a1a3d303d5106136.vbproj"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- This section defines project-level properties.
+
+       Configuration - Specifies whether the default configuration is Release or Debug.
+       Platform - Specifies what CPU the output of this project can run on.
+       OutputType - Must be "Library" for VSTA.
+       NoStandardLibraries - Set to "false" for VSTA.
+       RootNamespace - In C#, this specifies the namespace given to new files.
+                       In Visual Basic, all objects are wrapped in this namespace at runtime.
+       AssemblyName - Name of the output assembly.
+  -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ST_203b38b361164443a1a3d303d5106136.vbproj</RootNamespace>
+    <AssemblyName>ST_203b38b361164443a1a3d303d5106136.vbproj</AssemblyName>
+    <StartupObject></StartupObject>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <ProjectGuid>{5095C223-4338-46C3-AE56-FD72214A31BC}</ProjectGuid>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Debug" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants></DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Release" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants></DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <!-- This section enables pre- and post-build steps. However,
+       it is recommended that MSBuild tasks be used instead of these properties.
+  -->
+  <PropertyGroup>
+    <PreBuildEvent></PreBuildEvent>
+    <PostBuildEvent></PostBuildEvent>
+  </PropertyGroup>
+  <!-- This sections specifies references for the project. -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).-->
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <!-- This section defines the user source files that are part of the
+       project.
+
+       Compile - Specifies a source file to compile.
+       EmbeddedResource - Specifies a .resx file for embedded resources.
+       None - Specifies a file that is not to be passed to the compiler (for instance,
+              a text file or XML file).
+       AppDesigner - Specifies the directory where the application properties files can
+                     be found.
+  -->
+  <ItemGroup>
+    <AppDesigner Include="My Project\" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptMain.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <!-- Include the default configuration information and metadata files for the add-in.
+         These files are copied to the build output directory when the project is
+         built, and the path to the configuration file is passed to add-in on the command
+         line when debugging.
+    -->
+  </ItemGroup>
+  <!-- Include the build rules for a VB project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\9.0\InstallDir#\devenv.exe" />
+        <Host Name="SSIS_ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic 2008.
+' The ScriptMain is the entry point class of the script.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+	
+
+  Public Sub Main()
+
+    Dts.Variables("SQL_Source").Value = Dts.Variables("SQL_Source").Value.ToString() _
+      + " WHERE c.ModifiedDate > '" _
+      + Dts.Variables("VAR_LastImportDate").Value.ToString() + "' "
+
+    'Handy debugging technique, use message box to show the value
+    'Important! Make sure to comment out before sending package to production
+    'System.Windows.Forms.MessageBox.Show(Dts.Variables("SQL_Source").Value.ToString())
+
+  End Sub
+
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+          <BinaryItem
+            Name="ST_203b38b361164443a1a3d303d5106136.vbproj.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMLL6lYAAAAAAAAAAOAAAiELAQsAABwAAAAIAAAAAAAADjoA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAIAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAMA5AABLAAAAAEAAAGAEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAFBoAAAAgAAAAHAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAGAEAAAAQAAAAAYAAAAeAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAJAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADw
+OQAAAAAAAEgAAAACAAUA3CMAAOQVAAABAAAAAAAAACQjAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKAEAAAoqHgIoBAAACiqmcwYAAAqAAQAABHMHAAAKgAIA
+AARzCAAACoADAAAEcwkAAAqABAAABCoAABMwAQALAAAAAQAAEX4BAAAEbwoAAAoqABMwAQALAAAA
+AgAAEX4CAAAEbwsAAAoqABMwAQALAAAAAwAAEX4DAAAEbwwAAAoqABMwAQALAAAABAAAEX4EAAAE
+bw0AAAoqABMwAgANAAAABQAAEQIDKBEAAAooEgAACioAAAATMAEABwAAAAYAABECKBMAAAoqABMw
+AQALAAAABwAAEdAFAAACKBQAAAoqABMwAQAHAAAACAAAEQIoFQAACioAEzABABAAAAAJAAARAowB
+AAAbLQYoAQAAKyoCKhMwAgAQAAAACgAAEQMSAP4VAgAAGwaBAgAAGyoeAigXAAAKKhMwAgAoAAAA
+CwAAEQJ7GQAACm8aAAAKCweMAwAAGy0SKAIAACsLAnsZAAAKB28bAAAKBypKAigXAAAKAnMcAAAK
+fRkAAAoqAB4CKBcAAAoqEzACAC0AAAAMAAARfgYAAAQtIHIBAABw0AcAAAIoFAAACm8eAAAKcx8A
+AAoLB4AGAAAEfgYAAAQqAAAAEzABAAYAAAANAAARfgcAAAQqAAAeAoAHAAAEKkJzFwAACigRAAAK
+gAkAAAQqAAAAHgIoIAAACiobMAEAPwAAAA4AABF+CAAABC0yfgkAAAQoEQAACighAAAKfggAAAQt
+HHMWAAAGgAgAAATeEH4JAAAEKBEAAAooIgAACtx+CAAABCoAARAAAAIAHQAMKQAQAAAAAB4CKCQA
+AAoqEzAFAGgAAAAAAAAAAm8lAAAKbyYAAApyMwAAcG8nAAAKAm8lAAAKbyYAAApyMwAAcG8nAAAK
+bygAAApvFQAACnJJAABwAm8lAAAKbyYAAApyfQAAcG8nAAAKbygAAApvFQAACnKjAABwKCkAAApv
+KgAACiq0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1z
+Y29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49
+Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAA
+AAAAAAAAAFBBRFBBRFC0AAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAsAcA
+ACN+AAAcCAAAWAkAACNTdHJpbmdzAAAAAHQRAACsAAAAI1VTACASAAAQAAAAI0dVSUQAAAAwEgAA
+tAMAACNCbG9iAAAAAAAAAAIAAAFXHaIJCQ8AAAD6JTMAFgAAAQAAACsAAAAKAAAADAAAABkAAAAE
+AAAANwAAAAIAAAA2AAAADgAAAAQAAAAIAAAACQAAAAkAAAABAAAABQAAAAEAAAADAAAAAwAAAAIA
+AAAAACYJAQAAAAAACgBgATYBCgCUAXYBBgCkAZ0BCgD8ATYBBgB6Ap0BCgD8AtICBgAyAyEDBgBf
+A0oDDgDGA7EDEgBFBBwEBgBmBJ0BDgCZBIMEDgCyBIMEDgDfBMcEBgAJBfYECgBIBSEFCgBgBRMA
+DgCVBXgFBgDKBaoFBgDoBZ0BBgAMBp0BCgAlBhMABgBpBkoGBgCPBn0GBgC2BqUGBgDJBvYEEgDm
+BhwEFgA/Bx8HFgBXBx8HBgBpB50BBgB3B50BEgCNBxwEBgDuB6oFBgAOCKoFBgBGCCwIBgBfCH0G
+BgB8CEoGBgCKCH0GBgClCH0GBgDACH0GBgDZCH0GBgDyCH0GBgAPCX0GAAAAAAEAAAAAAAEAAQAA
+AAAAKQA3AAUAAQABAAAAAABlADcACQABAAIAAAEQAHAANwANAAEAAwAFAQAAegAAAA0ABQAIAAUB
+AACIAAAADQAFAA8AAAAAAKMArwANAAYAEQAAARAA5wDyACUACAAVAAEAAAAdAfIAKQAKABgAAgEA
+ACgBAAAtAAoAGgAxAL8BIAAxAOgBLQAxAAoCOgAxAC8CRwAhAAsDkAARAEIDnQARAGsDoQARAN4D
+vwARAOYDwwAGBmsE2QBWgHME3ABWgHsE3ABQIAAAAAAGGHABEwABAFggAAAAAAYYcAETAAEAYCAA
+AAAAERirARcAAQCMIAAAAAATCLIBGwABAKQgAAAAABMI2AEoAAEAvCAAAAAAEwgBAjUAAQDUIAAA
+AAATCB8CQgABAOwgAAAAAEYCZQJjAAEACCEAAAAARgJuAmgAAgAcIQAAAACDAH8CbAACADQhAAAA
+AEYChwJxAAIASCEAAAAAEQCQAngAAgBkIQAAAAABAK4CgAADAIAhAAAAAAYYcAETAAQAiCEAAAAA
+AwjCAosABAC8IQAAAAAGGHABEwAEANAhAAAAAAMYcAETAAQA2CEAAAAAFgh3A6UABAAUIgAAAAAW
+CIsDqgAEACgiAAAAABYIlwOvAAQAMCIAAAAAERirARcABQBEIgAAAAAGGHABEwAFAEwiAAAAABYI
+8wPGAAUAqCIAAAAABhhwARMABQCwIgAAAAAGAGEEEwAFAAAAAQBsAgAAAQClAgAAAQClAgAAAQCj
+AwkAcAETAGEAcAHqAHEAcAH5ABEAcAETAHkAcAETACQAcAETACwAcAETADQAcAETADwAcAETACQA
+wgKLACwAwgKLADQAwgKLADwAwgKLAIEAcAETAIkAcAETAJEAcAFIAZkA2QWTARkAZQJjABkAbgJo
+ACkA+gWgARkAhwJxAKkAFgawARkAcAETALEAcAHAAUQACwOQAEwA8wOLAEwAQAY9AkwAcAETALkA
+cAFMAikAmAZXAjkAcAFcAkkAcAETAMkAvgZ4AskAxAZ4AtEAcAETAFEAcAETAFEA+AaCAtkASQeH
+AuEAYAeMAukA8wOSAvEAcAeWAukAQAaeAvkAcAFMAgEBcAETAAkBcAGjAhEBcAETABkBcAFIASEB
+cAFIASkBcAFIATEBcAFIATkBcAFIAUEBcAFIAUkBcAFIAVEBcAFIAVkBcAFIAQgALADgAAgAMADl
+ACkAgwBhAS4AowF1Ay4AmwFVAy4AuwF1Ay4AWwFPAy4AawGoAi4A6wBRAi4AswFRAi4AkwFRAi4A
+qwGlAy4AcwGxAi4AewHQAi4AgwEYAy4AiwElA0AAKwDlAEAAEwDwAEMAEwDwAEMAGwD/AEkAgwB/
+AWMAGwD/AGMAEwDwAGkAgwByAYAAKwDlAIMAGwD/AIMAcwDlAIMAewDlAIkAgwBNAaAAKwDlAKMA
+wwDIAaMAEwDwAMAAKwDlAMMAEwDwAMMA6wBRAskAEwBvAuAAKwDlAOkAEwBvAgABKwDlAAABEwDw
+AAkBGwHlACABKwDlACABEwDwACMBYwHlACMBWwFRAkABKwDlAEABEwDwAGABEwDwAGABKwDlAIAB
+KwDlAKABKwDlAMABKwDlAMABEwDwAOABKwDlAAACEwDwAAACKwDlADQBOQE+AUMBmAGcAacBrAG7
+AbsBQwJjAmoCfQIEAAEABgAFAAcABgAIAAgAAACUAU8AAABNAlQAAAD8AVkAAABZAl4AAAAVA5gA
+AAAyA7UAAACpA7oAAACjA8sAAgAEAAMAAgAFAAUAAgAGAAcAAgAHAAkAAgAPAAsAAgASAA0AAgAT
+AA8AAQAUAA8AAgAXABEAdQB1AIgAGAEfASYBLQEqAjECBIAAAAEAAAAAAAAAAAAAAAAA8gAAAAQA
+AAAAAAAAAAAAAAEACgAAAAAACgAAAAAAAAAAAAAACgATAAAAAAAEAAAAAAAAAAAAAAABAJ0BAAAA
+AAsAAAAAAAAAAAAAANAA/QMAAAAACwAAAAAAAAAAAAAA0AAABwAAAAAAAAAAAQAAAK8HAAAFAAQA
+BgAEAAoACQAAABAADACjAgAAEAAZAKMCAAAAABsAowItALYBLQA4AgAAADxNb2R1bGU+AG1zY29y
+bGliAE1pY3Jvc29mdC5WaXN1YWxCYXNpYwBNeUFwcGxpY2F0aW9uAFNUXzIwM2IzOGIzNjExNjQ0
+NDNhMWEzZDMwM2Q1MTA2MTM2LnZicHJvai5NeQBNeUNvbXB1dGVyAE15UHJvamVjdABNeVdlYlNl
+cnZpY2VzAFRocmVhZFNhZmVPYmplY3RQcm92aWRlcmAxAE15UmVzb3VyY2VzAFNUXzIwM2IzOGIz
+NjExNjQ0NDNhMWEzZDMwM2Q1MTA2MTM2LnZicHJvai5NeS5SZXNvdXJjZXMATXlTZXR0aW5ncwBT
+VF8yMDNiMzhiMzYxMTY0NDQzYTFhM2QzMDNkNTEwNjEzNi52YnByb2oAU2NyaXB0TWFpbgBTY3Jp
+cHRSZXN1bHRzAE1pY3Jvc29mdC5WaXN1YWxCYXNpYy5BcHBsaWNhdGlvblNlcnZpY2VzAEFwcGxp
+Y2F0aW9uQmFzZQAuY3RvcgBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuRGV2aWNlcwBDb21wdXRlcgBT
+eXN0ZW0AT2JqZWN0AC5jY3RvcgBnZXRfQ29tcHV0ZXIAbV9Db21wdXRlck9iamVjdFByb3ZpZGVy
+AGdldF9BcHBsaWNhdGlvbgBtX0FwcE9iamVjdFByb3ZpZGVyAFVzZXIAZ2V0X1VzZXIAbV9Vc2Vy
+T2JqZWN0UHJvdmlkZXIAZ2V0X1dlYlNlcnZpY2VzAG1fTXlXZWJTZXJ2aWNlc09iamVjdFByb3Zp
+ZGVyAEFwcGxpY2F0aW9uAFdlYlNlcnZpY2VzAEVxdWFscwBvAEdldEhhc2hDb2RlAFR5cGUAR2V0
+VHlwZQBUb1N0cmluZwBDcmVhdGVfX0luc3RhbmNlX18AVABpbnN0YW5jZQBEaXNwb3NlX19JbnN0
+YW5jZV9fAGdldF9HZXRJbnN0YW5jZQBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuTXlTZXJ2aWNlcy5J
+bnRlcm5hbABDb250ZXh0VmFsdWVgMQBtX0NvbnRleHQAR2V0SW5zdGFuY2UAU3lzdGVtLlJlc291
+cmNlcwBSZXNvdXJjZU1hbmFnZXIAX3Jlc01ncgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBDdWx0dXJl
+SW5mbwBfcmVzQ3VsdHVyZQBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0
+dXJlAFZhbHVlAEN1bHR1cmUAU3lzdGVtLkNvbmZpZ3VyYXRpb24AQXBwbGljYXRpb25TZXR0aW5n
+c0Jhc2UAbV9WYWx1ZQBtX1N5bmNPYmplY3QAZ2V0X1ZhbHVlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+U2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFS
+VFNjcmlwdE9iamVjdE1vZGVsQmFzZQBNYWluAEVudW0AdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUA
+U3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93
+c2FibGVTdGF0ZQBTeXN0ZW0uQ29kZURvbS5Db21waWxlcgBHZW5lcmF0ZWRDb2RlQXR0cmlidXRl
+AFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlckhpZGRlbkF0dHJpYnV0ZQBNaWNyb3NvZnQuVmlz
+dWFsQmFzaWMuQ29tcGlsZXJTZXJ2aWNlcwBTdGFuZGFyZE1vZHVsZUF0dHJpYnV0ZQBIaWRlTW9k
+dWxlTmFtZUF0dHJpYnV0ZQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwuRGVzaWduAEhlbHBLZXl3b3Jk
+QXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAUnVudGltZUhlbHBlcnMA
+R2V0T2JqZWN0VmFsdWUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQWN0aXZh
+dG9yAENyZWF0ZUluc3RhbmNlAE15R3JvdXBDb2xsZWN0aW9uQXR0cmlidXRlAHNldF9WYWx1ZQBT
+eXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMAQ29tVmlzaWJsZUF0dHJpYnV0ZQBTeXN0ZW0u
+UmVmbGVjdGlvbgBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLlRocmVhZGluZwBNb25pdG9y
+AEVudGVyAEV4aXQARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBTY3JpcHRPYmplY3RNb2Rl
+bABnZXRfRHRzAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuTWFuYWdlZERUUwBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLkR0cy5SdW50aW1lAFZhcmlhYmxlcwBnZXRfVmFyaWFibGVzAFZhcmlhYmxlAGdldF9JdGVt
+AFN0cmluZwBDb25jYXQAQ0xTQ29tcGxpYW50QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQ
+b2ludEF0dHJpYnV0ZQBTVF8yMDNiMzhiMzYxMTY0NDQzYTFhM2QzMDNkNTEwNjEzNi52YnByb2ou
+UmVzb3VyY2VzLnJlc291cmNlcwBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAFJ1bnRp
+bWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVGFyZ2V0
+RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5RmlsZVZlcnNpb25BdHRyaWJ1dGUAR3VpZEF0dHJp
+YnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0
+ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBTVF8yMDNiMzhi
+MzYxMTY0NDQzYTFhM2QzMDNkNTEwNjEzNi52YnByb2ouZGxsAAAAAAAxTQB5AC4AUgBlAHMAbwB1
+AHIAYwBlAHMALgBNAHkAUgBlAHMAbwB1AHIAYwBlAHMAABVTAFEATABfAFMAbwB1AHIAYwBlAAAz
+IABXAEgARQBSAEUAIABjAC4ATQBvAGQAaQBmAGkAZQBkAEQAYQB0AGUAIAA+ACAAJwABJVYAQQBS
+AF8ATABhAHMAdABJAG0AcABvAHIAdABEAGEAdABlAAAFJwAgAAEAAADRhdLARMXtTqCEoJfS2m/m
+AAi3elxWGTTgiQiwP19/EdUKOgMgAAEDAAABBAAAEgwHBhUSGAESDAQAABIIBwYVEhgBEggEAAAS
+EQcGFRIYARIRBAAAEhQHBhUSGAESFAQIABIMBAgAEggECAASEQQIABIUBCABAhwDIAAIBCAAEhUD
+IAAOAh4ABxABAR4AHgAHMAEBARAeAAITAAQgABMABwYVEhkBEwAEKAATAAMGEh0DBhIhBAAAEh0E
+AAASIQUAAQESIQQIABIdBAgAEiEDBhIgAgYcBAAAEiAECAASIAiJhF3NgIDMkQIGCAMGESgEAAAA
+AAQBAAAABSABARE1CAEAAQAAAAAABSACAQ4OGAEACk15VGVtcGxhdGUIMTAuMC4wLjAAAAYVEhgB
+EgwGFRIYARIIBhUSGAESEQYVEhgBEhQEBwESDAQHARIIBAcBEhEEBwESFAQgAQEOEwEADk15Lldl
+YlNlcnZpY2VzAAAQAQALTXkuQ29tcHV0ZXIAAAwBAAdNeS5Vc2VyAAATAQAOTXkuQXBwbGljYXRp
+b24AAAQAARwcAwcBAgMHAQgGAAESFRFRBAcBEhUDBwEOBRABAB4ABAoBHgAEBwEeAAcgBAEODg4O
+YQEANFN5c3RlbS5XZWIuU2VydmljZXMuUHJvdG9jb2xzLlNvYXBIdHRwQ2xpZW50UHJvdG9jb2wS
+Q3JlYXRlX19JbnN0YW5jZV9fE0Rpc3Bvc2VfX0luc3RhbmNlX18AAAAGFRIYARMABhUSGQETAAQK
+ARMABSABARMACAcDEwATABMABCABAQIFAQAAAAAEIAASYQYgAgEOEmEGBwISHRIdBAcBEiEIAQAC
+AAAAAAAEAAEBHAQHARIgBCAAEm0EIAAScQUgARJ1HAMgABwHAAQODg4ODgQgAQEcBCABAQgIAQAI
+AAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBRwEAGi5ORVRGcmFtZXdvcmssVmVy
+c2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0DAEABzEu
+MC4wLjAAACkBACQ1YjFmY2NhYi03YjQ2LTQ3YjktODc5NC0xMzExZTNiMTQxOGUAAAUBAAEAAB8B
+ABpDb3B5cmlnaHQgQCBNaWNyb3NvZnQgMjAxMAAALwEAKlNUXzIwM2IzOGIzNjExNjQ0NDNhMWEz
+ZDMwM2Q1MTA2MTM2LnZicHJvagAADgEACU1pY3Jvc29mdAAA6DkAAAAAAAAAAAAA/jkAAAAgAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAPA5AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA
+/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+ABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAA
+WEAAAAgEAAAAAAAAAAAAAAgENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9
+BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEA
+VgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAA
+AAAAsARoAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABEAwAAAQAwADAAMAAwADAA
+NABiADAAAAA0AAoAAQBDAG8AbQBwAGEAbgB5AE4AYQBtAGUAAAAAAE0AaQBjAHIAbwBzAG8AZgB0
+AAAAgAArAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABfADIAMAAzAGIA
+MwA4AGIAMwA2ADEAMQA2ADQANAA0ADMAYQAxAGEAMwBkADMAMAAzAGQANQAxADAANgAxADMANgAu
+AHYAYgBwAHIAbwBqAAAAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
+MAAuADAAAACAAC8AAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADIAMAAzAGIAMwA4
+AGIAMwA2ADEAMQA2ADQANAA0ADMAYQAxAGEAMwBkADMAMAAzAGQANQAxADAANgAxADMANgAuAHYA
+YgBwAHIAbwBqAC4AZABsAGwAAAAAAFwAGwABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAA
+AEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgAE0AaQBjAHIAbwBzAG8AZgB0ACAAMgAwADEAMAAAAAAA
+iAAvAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAVABfADIAMAAzAGIAMwA4
+AGIAMwA2ADEAMQA2ADQANAA0ADMAYQAxAGEAMwBkADMAMAAzAGQANQAxADAANgAxADMANgAuAHYA
+YgBwAHIAbwBqAC4AZABsAGwAAAAAAHgAKwABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBU
+AF8AMgAwADMAYgAzADgAYgAzADYAMQAxADYANAA0ADQAMwBhADEAYQAzAGQAMwAwADMAZAA1ADEA
+MAA2ADEAMwA2AC4AdgBiAHAAcgBvAGoAAAAAADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgAAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAAAQOgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimCustomer - SQL - Get last update"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCustomer - SQL - Get last update"
+      DTS:DTSID="{2767D6B4-346F-4064-8B4F-F11C2866D8B5}"
+      DTS:Description="Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9BC2041D-FE73-46BC-A361-FC7B844492E3}"
+          SQLTask:SqlStatementSource="SELECT CAST('2005-01-01 00:00:00' AS DATETIME) AS LastImportDate"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VAR_LastImportDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimCustomer - SQL - Reset Staging"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCustomer - SQL - Reset Staging"
+      DTS:DTSID="{1F569E3C-3F92-4A1E-8A25-59FD170FFB35}"
+      DTS:Description="Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:Namespace="User"
+          DTS:IncludeInDebugDump="2345"
+          DTS:ObjectName="SQL_ResetStaging"
+          DTS:DTSID="{F34033EB-48EC-4E39-8203-0D34A8FED9A5}"
+          DTS:CreationName="">
+          <DTS:VariableValue
+            DTS:DataType="8">DELETE FROM Staging.DimCustomer</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9BC2041D-FE73-46BC-A361-FC7B844492E3}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_ResetStaging" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimCustomer - SQL - Update from Staging"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCustomer - SQL - Update from Staging"
+      DTS:DTSID="{70A06035-5C29-422F-894B-6C3056EEE702}"
+      DTS:Description="Execute SQL Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9BC2041D-FE73-46BC-A361-FC7B844492E3}"
+          SQLTask:SqlStatementSource="UPDATE BI&#xA;  SET BI.CustomerID = s.CustomerID&#xA;    , BI.AddressID = s.AddressID&#xA;    , BI.CountryRegion = s.CountryRegion&#xA;    , BI.StateProvince = s.StateProvince&#xA;    , BI.City = s.City&#xA;    , BI.CompanyName = s.CompanyName&#xA; FROM BI.DimCustomer bi&#xA; JOIN Staging.DimCustomer s ON BI.DimCustomerID = s.DimCustomerID&#xA;     " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:From="Package\DimCustomer - SQL - Reset Staging"
+      DTS:To="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:DTSID="{E26C41CF-FC27-4AD3-85EE-EACD5626A242}"
+      DTS:CreationName="" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:From="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+      DTS:To="Package\DimCustomer - SQL - Update from Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:DTSID="{1E16752D-601A-472F-8AB1-D9DAF51EB272}"
+      DTS:CreationName="" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:From="Package\DimCustomer - SQL - Get last update"
+      DTS:To="Package\DimCustomer - SQL - Add where clause to SQL_Source variable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:DTSID="{30830635-A074-410F-91CA-4D889AF8B74A}"
+      DTS:CreationName="" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:From="Package\DimCustomer - SQL - Add where clause to SQL_Source variable"
+      DTS:To="Package\DimCustomer - SQL - Reset Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:DTSID="{1D260D8F-B1F1-47F5-8817-33158BA98845}"
+      DTS:CreationName="" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="290,35"
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+          TopLeft="5.5,237.801886792453" />
+        <NodeLayout
+          Size="290,35"
+          Id="Package\DimCustomer - SQL - Add where clause to SQL_Source variable"
+          TopLeft="5.5,94.4811320754717" />
+        <NodeLayout
+          Size="290,35"
+          Id="Package\DimCustomer - SQL - Get last update"
+          TopLeft="5.5,22.8207547169811" />
+        <NodeLayout
+          Size="290,35"
+          Id="Package\DimCustomer - SQL - Reset Staging"
+          TopLeft="5.5,166.141509433962" />
+        <NodeLayout
+          Size="290,35"
+          Id="Package\DimCustomer - SQL - Update from Staging"
+          TopLeft="5.5,309.537735849057" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="150.443396226415,201.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490565882,36.5283018867925"
+              Start="0,0"
+              End="0.0377358490565882,29.0283018867925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.2641509433962" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565882,18.2641509433962" />
+                  <mssgle:LineSegment
+                    End="0.0377358490565882,29.0283018867925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="150.481132075472,272.933962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.6037735849056"
+              Start="0,0"
+              End="0,29.1037735849056">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1037735849056" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="150.443396226415,57.9528301886793">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5283018867924"
+              Start="0,0"
+              End="0,29.0283018867924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0283018867924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="150.443396226415,129.61320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5283018867925"
+              Start="0,0"
+              End="0,29.0283018867925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0283018867925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Normally we'd store the last import date in a&#xD;&#xA;table somewhere, or get it by comparing the &#xD;&#xA;max import date in the dim to the last modified&#xD;&#xA;date in the source. Here we're faking it by using&#xD;&#xA;a static value."
+          ParentId="Package"
+          Size="226,143"
+          Id="82e891f1-d626-41c0-8a6c-88e8aa3d9b58"
+          TopLeft="330.556603773585,5.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Here we use some vb script to modify the variable&#xD;&#xA;used in the DFT to read the source data. We add&#xD;&#xA;a where clause using the date we just retrieved."
+          ParentId="Package"
+          Size="226,104"
+          Id="e2dc00bf-4037-4076-ab83-1e463421f446"
+          TopLeft="330.556603773585,91.311320754717">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Inserts are faster so we insert rows to a staging &#xD;&#xA;area in the DFT then do a mass update via SQL&#xD;&#xA;here"
+          ParentId="Package"
+          Size="226,91"
+          Id="d4d64456-ecd6-48f6-bf0d-866fe1ac9f45"
+          TopLeft="330.556603773585,303.764150943396">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Read the source with rows to be updated"
+          ParentId="Package"
+          Size="226,52"
+          Id="3f6bcca0-44f1-488a-8ec5-bf1b08b7cdb4"
+          TopLeft="330.556603773585,240.707547169811">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="We reset the staging area here, rather than after&#xD;&#xA;so that if there is an error it's easier to debug"
+          ParentId="Package"
+          Size="226,78"
+          Id="6cdd6547-bfa7-4387-8250-777d33bb4d9e"
+          TopLeft="330.556603773585,164.028301886792">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Adventure Works Lite 2008 R2]">
+    <DataSourceID>Adventure Works Lite 2008 R2</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Adventure Works Lite 2008 R2 Data Warehouse]">
+    <DataSourceID>Adventure Works Lite 2008 R2 Data Warehouse</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\DimCustomer - DFT - Add rows to Customer Dimension">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="368,35"
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension\SRC - Customer Data"
+          TopLeft="70.9716981132076,5.5" />
+        <NodeLayout
+          Size="236,35"
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - Record exists, stage it for later update"
+          TopLeft="5.5,214.745283018868" />
+        <NodeLayout
+          Size="236,35"
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension\DST - New record, insert it"
+          TopLeft="316.179245283019,214.745283018868" />
+        <NodeLayout
+          Size="355,35"
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension\LKP - See if customer data already in the dimension"
+          TopLeft="79.7264150943396,90.9716981132076" />
+        <EdgeLayout
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[Lookup No Match Output]"
+          TopLeft="319.688679245283,126.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="114.301886792453,88.6415094339623"
+              Start="0,0"
+              End="114.301886792453,81.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.3018867924528" />
+                  <mssgle:LineSegment
+                    End="114.301886792453,44.3018867924528" />
+                  <mssgle:LineSegment
+                    End="114.301886792453,81.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="1.34455667747641,49.3018867924528,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[Lookup Match Output]"
+          TopLeft="195.160377358491,126.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-71.8490566037736,88.6415094339623"
+              Start="0,0"
+              End="-71.8490566037736,81.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-71.8490566037736,44.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-71.8490566037736,81.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-84.1159150206368,49.3018867924528,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCustomer - DFT - Add rows to Customer Dimension.Paths[OLE DB Source Output]"
+          TopLeft="255.084905660377,40.6320754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="2.33962264150944,50.3396226415095"
+              Start="0,0"
+              End="2.33962264150944,42.8396226415095">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.1698113207547" />
+                  <mssgle:LineSegment
+                    End="2.33962264150944,25.1698113207547" />
+                  <mssgle:LineSegment
+                    End="2.33962264150944,42.8396226415095" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="This sources uses a SQL Statement from a &#xD;&#xA;variable which was modified to add a where &#xD;&#xA;clause to only pull records from a last update date"
+          ParentId="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+          Size="234,91"
+          Id="c1223b2f-1c82-473c-ad66-5f76ffaf964c"
+          TopLeft="472.707547169811,11.0849056603774">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Now we need to see if this row is already in the&#xD;&#xA;dim table and needs updating (match output) or&#xD;&#xA;is brand new and needs to be inserted (no match)"
+          ParentId="Package\DimCustomer - DFT - Add rows to Customer Dimension"
+          Size="240,104"
+          Id="e6b48d87-724c-4d96-bea4-0ca015779768"
+          TopLeft="473.537735849057,90.7830188679245">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="10.800000190734863"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

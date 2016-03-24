@@ -1,0 +1,68 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>BIDemo_Cube</Database>
+    <Server>localhost</Server>
+    <ConnectionString>DataSource=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>QK3K3sH56SBaH2B3DFJaSQ==11/15/2010 1:39:57 PM11/15/2010 1:39:57 PM</TimeStamp>
+        <ID>
+          <String>AdventureWorksLT2008R2DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>IQ6lvC5qeAEzwdMgMy8+Fw==11/15/2010 1:57:50 PM11/15/2010 1:54:58 PM</TimeStamp>
+        <ID>
+          <String>AdventureWorksLT2008R2DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>22LMjUN0Kq3K3e5b45+wzg==11/24/2010 2:37:37 PM11/15/2010 1:59:42 PM</TimeStamp>
+        <ID>
+          <String>DimCustomer</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>2qrh58YbteVDS+QY/YY2sw==11/15/2010 2:10:36 PM11/15/2010 2:06:49 PM</TimeStamp>
+        <ID>
+          <String>DimProduct</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>suQb665Y2+FFJ7rjfZ2gnA==11/24/2010 2:26:46 PM11/15/2010 2:11:37 PM5rKbyuvuf4DQlgZDXlsFpA==11/15/2010 2:11:38 PM11/15/2010 2:11:37 PM</TimeStamp>
+        <ID>
+          <String>AdventureWorksLT2008R2DW_Cube</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>pdwTbqSbjybkExuQpT31vA==11/15/2010 11:29:44 AM11/15/2010 11:29:44 AM</TimeStamp>
+      <ID>
+        <String>BIDemo_Cube</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2010-11-24T20:38:21.343333Z</LastDeployed>
+</DeploymentSnapshot>

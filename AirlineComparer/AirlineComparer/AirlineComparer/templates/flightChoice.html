@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <h3>Flights</h3>
+    <!--
+        startTime: "8:20am",
+    cost: 483.25,
+    airtline: "United",
+    date: "2013/5/12",
+    legs: [{
+        departureTime: "8:30am",
+        arrivalTime: "12:20pm",
+        departureCity: "SEA",
+        arrivalCity: "ATL"
+    }, {
+        departureTime: "1:30pm",
+        arrivalTime: "4:20pm",
+        departureCity: "ATL",
+        arrivalCity: "NYC"
+    }]
+    -->
+    <div class="col-md-6" ng-repeat="f in ourTrip.flights">
+        <!-- Loop: ourData is defined in flightChoiceController.js -->
+        <div>
+            <div>Start Time:</div>
+            <div>{{ f.startTime }}</div>
+        </div>
+
+        <div>
+            <div>Price:</div>
+            <div>{{ f.cost }}</div>
+        </div>
+
+        <div>
+            <div>Airline:</div>
+            <div>{{ f.airtline }}</div>
+        </div>
+
+        <div>
+            <div>Date:</div>
+            <div>{{ f.date }}</div>
+        </div>
+
+        <div>Legs</div>
+        <ul>
+            <li ng-repeat="l in f.legs">
+                From: {{ l.departureCity }} ({{ l.departureTime }}) To: {{ l.arrivalCity }} ({{ l.arrivalTime }})
+            </li>
+        </ul>
+
+        <button class="btn btn-success" ng-click="pickFlight(f)">Pick Me!</button>
+
+        <div ng-show="f.picked">Picked!</div>
+    </div>
+</div>
